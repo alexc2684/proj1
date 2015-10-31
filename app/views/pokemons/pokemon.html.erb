@@ -1,0 +1,5 @@
+<%= form_for @pokemon , url: {action: "create"} do |f| %>
+    <%= f.label "Your pokemon's name"%>
+    <%= f.text_field :name%>
+    <%= f.submit %>
+<% end %>

@@ -7,6 +7,18 @@ class TrainersController < ApplicationController
 
   def show
     @trainer = Trainer.find(params[:id])
+    @user_is_trainer = (params[:id].to_i == current_trainer().id)
+    @pokemons = @trainer.pokemons
+  end
+
+  def damage
+  	@pokemon = Pokemon.find(params[:id])
+  	@pokemon.health -= 10
+  	@pokemon.save
+  	redirect_to_trainer_path(id: @pokemon.trainer_id)
+  	if @pokemon.health <= 0
+  		@pokemon.destroy
+  	end
   end
 
 end
